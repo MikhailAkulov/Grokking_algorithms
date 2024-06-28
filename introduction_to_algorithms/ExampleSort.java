@@ -2,26 +2,24 @@ package introduction_to_algorithms;
 
 public class ExampleSort {
 
-    public static int findSmallest(int[] array) {
-        int smallest = array[0];
-        int smallestIndex = 0;
-
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] < smallest) {
-                smallest = array[i];
-                smallestIndex = i;
+    public static int[] selectionSort(int[] array) {
+        int a;
+        for (int i = 0; i < array.length; i++) {
+            int min = array[i];
+            int index = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < min) {
+                    min = array[j];
+                    index = j;
+                }
+            }
+            if (i != index) {
+                a = array[i];
+                array[i] = min;
+                array[index] = a;
             }
         }
-        return smallestIndex;
-    }
-
-    public static int[] selectionSort(int[] array) {
-        int[] newArray = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            int smallest = findSmallest(array);
-            newArray[smallest] = i + 1;
-        }
-        return newArray;
+        return array;
     }
 
     public static void main(String[] args) {
